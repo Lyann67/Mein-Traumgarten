@@ -1,2 +1,2 @@
 # Mein-Traumgarten
-![Traumgarten](Traumgarten)
+![Traumgarten](Traumgarten.png)
