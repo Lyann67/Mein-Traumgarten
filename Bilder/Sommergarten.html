@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unser Garten-Fun-Paradies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #ff2d78;
+    --cyan: #00e0ff;
+    --yellow: #ffd400;
+    --green: #3ddc84;
+    --deep: #1b1035;
+    --white: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--deep);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO / BILD-BEREICH ===== */
+  .hero {
+    position: relative;
+    width: 100%;
+    /* SEHR GROSSES BILD */
+    height: 100vh;
+    min-height: 650px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--pink), var(--cyan) 60%, var(--yellow));
+  }
+
+  .hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Falls das Bild fehlt oder noch nicht ersetzt wurde, siehe .hero-placeholder-text */
+  }
+
+  .hero-placeholder-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+    padding: 30px;
+    font-family: 'Baloo 2', sans-serif;
+    pointer-events: none;
+  }
+
+  .hero-placeholder-text span.big {
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight: 800;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .hero-placeholder-text span.small {
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    font-weight: 500;
+    background: rgba(27, 16, 53, 0.55);
+    padding: 8px 18px;
+    border-radius: 999px;
+  }
+
+  .hero-overlay {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 60px 6vw 50px;
+    background: linear-gradient(0deg, rgba(27,16,53,0.92) 10%, rgba(27,16,53,0.35) 70%, transparent 100%);
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--yellow);
+    color: var(--deep);
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+    transform: rotate(-2deg);
+  }
+
+  .hero-title {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 7vw, 5rem);
+    line-height: 1.02;
+    text-shadow: 0 6px 0 var(--pink), 0 12px 30px rgba(0,0,0,0.4);
+    max-width: 20ch;
+  }
+
+  .hero-title .accent {
+    color: var(--yellow);
+    -webkit-text-stroke: 2px var(--deep);
+  }
+
+  /* ===== EMOJI-STREIFEN ALS TRENNER ===== */
+  .fun-strip {
+    display: flex;
+    width: 100%;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--yellow) 0 60px,
+      var(--pink) 60px 120px,
+      var(--cyan) 120px 180px,
+      var(--green) 180px 240px
+    );
+    padding: 14px 0;
+    font-size: 1.6rem;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  /* ===== HAUPT-BESCHREIBUNG ===== */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 70px 6vw 40px;
+  }
+
+  .section-title {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--yellow);
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .description p {
+    font-size: 1.15rem;
+    line-height: 1.85;
+    margin-bottom: 26px;
+    color: #f1eaff;
+  }
+
+  .description strong {
+    color: var(--cyan);
+    font-weight: 700;
+  }
+
+  .description em {
+    color: var(--pink);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .highlight-word {
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  /* ===== FEATURE-KARTEN ===== */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 22px;
+    margin: 50px 0 60px;
+  }
+
+  .feature-card {
+    background: rgba(255,255,255,0.06);
+    border: 3px solid var(--pink);
+    border-radius: 22px;
+    padding: 26px 20px;
+    text-align: center;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+
+  .feature-card:nth-child(2) { border-color: var(--cyan); }
+  .feature-card:nth-child(3) { border-color: var(--yellow); }
+  .feature-card:nth-child(4) { border-color: var(--green); }
+
+  .feature-card:hover {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+
+  .feature-card .emoji {
+    font-size: 2.6rem;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .feature-card h3 {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .feature-card p {
+    font-size: 0.95rem;
+    color: #d8cdf0;
+    line-height: 1.5;
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px 20px 60px;
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--deep);
+    background: var(--yellow);
+    border-top: 6px dashed var(--pink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .feature-card { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===== HERO-BEREICH MIT GROSSEM BILD ===== -->
+  <section class="hero">
+    <!--
+      BILD AUSTAUSCHEN:
+      Ersetze einfach die "src"-Angabe unten durch den Pfad/Dateinamen deines eigenen Fotos,
+      z. B. src="mein-garten.jpg" (Bild muss im selben Ordner wie diese HTML-Datei liegen).
+      Solange kein echtes Bild vorhanden ist, wird ein bunter Platzhalter angezeigt.
+    -->
+    <img
+      src="DEIN-BILD-HIER.jpg"
+      alt="Airtrack, Trampolin, Pool und Beerenbeet im Garten"
+      onerror="this.style.display='none'; document.getElementById('placeholder').style.display='flex';"
+    >
+    <div class="hero-placeholder-text" id="placeholder">
+      <span class="big">📸 Hier kommt dein Bild rein!</span>
+      <span class="small">Ersetze "DEIN-BILD-HIER.jpg" im HTML-Code durch deinen Dateinamen</span>
+    </div>
+
+    <div class="hero-overlay">
+      <span class="hero-eyebrow">Der Garten des Sommers</span>
+      <h1 class="hero-title">Airtrack, Trampolin, Pool &amp; <span class="accent">Beerenbeet</span></h1>
+    </div>
+  </section>
+
+  <!-- Bunter Trennstreifen -->
+  <div class="fun-strip">
+    <span>🤸</span><span>🌈</span><span>💦</span><span>🫐</span><span>⭐</span><span>🔥</span>
+  </div>
+
+  <!-- ===== HAUPTPART: LANGE BESCHREIBUNG ===== -->
+  <main>
+    <h2 class="section-title">Willkommen in unserem Sommer-Rückzugsort</h2>
+
+    <div class="description">
+      <p>
+        Mitten in unserem Garten hat sich in den letzten Jahren ein kleines Paradies entwickelt,
+        das an heißen Tagen einfach unschlagbar ist. Direkt im Zentrum liegt das
+        <strong>Airtrack</strong> – eine aufblasbare Turnbahn, die sich über mehrere Meter
+        erstreckt und auf der wir Räder, Flickflacks und kleine Flugeinlagen üben. Die weiche,
+        aber gleichzeitig sprungfeste Oberfläche verzeiht kleine Fehler und macht selbst
+        Anfängern schnell Mut, neue Bewegungen auszuprobieren. Man spürt förmlich, wie viel
+        Energie in dieser einfachen blauen Bahn steckt, sobald die ersten Sprünge gelingen.
+      </p>
+
+      <p>
+        Gleich daneben, fast wie ein natürlicher nächster Schritt, steht unser
+        <strong>Trampolin</strong>. Es ist der Ort, an dem sich Airtrack-Sprünge und
+        Trampolin-Schwung perfekt ergänzen: Wer auf dem Airtrack Schwung geholt hat, springt
+        anschließend hoch hinaus, dreht sich in der Luft und landet weich im Netz aus straff
+        gespannten Sprungfedern. Am Abend, wenn die Sonne tiefer steht, wirft das Trampolin
+        lange Schatten über den Rasen – ein Bild, das für uns untrennbar mit Sommerferien
+        verbunden ist. Freunde und Nachbarskinder kommen regelmäßig vorbei, nur um eine
+        Runde mitzuspringen.
+      </p>
+
+      <p>
+        Wer sich nach dem Toben abkühlen möchte, muss nur ein paar Schritte weitergehen: Dort
+        wartet unser <em>Pool</em>. Kein riesiges Schwimmbecken, aber groß genug, um
+        unterzutauchen, ein paar Bahnen zu ziehen oder einfach nur mit aufgelegten Armen am
+        Rand zu treiben und in den Himmel zu schauen. Das Wasser glitzert in der Mittagssonne
+        und lädt an heißen Tagen förmlich dazu ein, spontan hineinzuspringen. Für uns ist der
+        Pool der ruhige Gegenpol zu Airtrack und Trampolin – hier wird nicht getobt, sondern
+        entspannt, geplanscht und abgekühlt.
+      </p>
+
+      <p>
+        Den Abschluss unseres kleinen Gartenrundgangs bildet ein Ort, der auf den ersten Blick
+        nicht viel mit Sport zu tun hat, aber genauso wichtig für uns ist: das
+        <span class="highlight-word">Beerenbeet</span>. Zwischen sattgrünen Blättern verstecken
+        sich Himbeeren, Johannisbeeren und Erdbeeren, die wir über den Sommer hinweg nach und
+        nach ernten. Nach einer ausgiebigen Runde auf dem Trampolin oder ein paar Bahnen im
+        Pool ist nichts erfrischender, als sich direkt vom Strauch eine Handvoll süßer Beeren
+        zu pflücken. Das Beerenbeet erdet unseren Garten – es erinnert uns daran, dass zu
+        einem echten Sommergarten nicht nur Action und Wasserspaß gehören, sondern auch das
+        ruhige, geduldige Wachsen von etwas Eigenem.
+      </p>
+
+      <p>
+        Zusammen ergeben Airtrack, Trampolin, Pool und Beerenbeet einen Kreislauf aus Bewegung,
+        Abkühlung und kleinen Genüssen, der unseren Garten von Frühling bis Spätsommer zu
+        unserem liebsten Ort macht. Ob mit Freunden, der Familie oder ganz allein an einem
+        ruhigen Nachmittag – hier ist für jede Stimmung genau das Richtige dabei.
+      </p>
+    </div>
+
+    <div class="features">
+      <div class="feature-card">
+        <span class="emoji">🤸</span>
+        <h3>Airtrack</h3>
+        <p>Aufblasbare Turnbahn für Sprünge, Räder und akrobatische Übungen.</p>
+      </div>
+      <div class="feature-card">
+        <span class="emoji">⛹️</span>
+        <h3>Trampolin</h3>
+        <p>Hoch hinaus springen und Drehungen üben – der Klassiker im Garten.</p>
+      </div>
+      <div class="feature-card">
+        <span class="emoji">🏊</span>
+        <h3>Pool</h3>
+        <p>Abkühlung an heißen Tagen und entspanntes Planschen.</p>
+      </div>
+      <div class="feature-card">
+        <span class="emoji">🫐</span>
+        <h3>Beerenbeet</h3>
+        <p>Himbeeren, Johannisbeeren und Erdbeeren zum Naschen.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    🌞 Unser Garten – gebaut für Sprünge, Wasser und süße Beeren 🌞
+  </footer>
+
+</body>
+</html>
