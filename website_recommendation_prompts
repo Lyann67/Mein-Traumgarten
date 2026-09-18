@@ -1,0 +1,183 @@
+Ich möchte eine Web-App namens „MovieMind“ entwickeln.
+
+Die App soll Filme empfehlen, indem sie aus den Bewertungen eines Nutzers lernt.
+
+Der Nutzer soll:
+
+* Filme sehen können
+* einen Film mit 👍 oder 👎 bewerten können
+* seine bisherigen Bewertungen sehen können
+* ein automatisch erstelltes Interessenprofil sehen können
+* neue personalisierte Empfehlungen bekommen
+* bei jeder Empfehlung sehen können, warum sie vorgeschlagen wurde
+
+Die App soll zunächst mit einer lokalen Liste von ungefähr 30 Filmen funktionieren. Wir wollen keine Datenbank und kein Login verwenden.
+
+Wichtig: Der Empfehlungsalgorithmus soll nicht einfach zufällige Filme auswählen. Er soll die bisherigen Nutzerbewertungen tatsächlich verwenden.
+
+Plane das gesamte Projekt für mich.
+
+Beschreibe:
+
+1. Welche Komponenten die Website braucht
+2. Welche Daten wir für jeden Film speichern sollten
+3. Wie das Nutzerprofil aufgebaut sein könnte
+4. Wie ein einfacher Empfehlungsalgorithmus funktionieren könnte
+5. Wie die 👍/👎-Bewertungen den Algorithmus verändern
+6. Welche Rolle ein LLM sinnvollerweise übernehmen könnte
+7. Welche Teile besser durch normalen Code als durch ein LLM gelöst werden sollten
+
+Gib mir zunächst nur den Plan und noch keinen Code.
+--------------------
+
+Prompt 2:
+Setze jetzt den geplanten MovieMind-Prototyp als funktionierende Web-App um.
+
+Erstelle eine vollständige, direkt ausführbare Website mit HTML, CSS und JavaScript.
+
+Anforderungen:
+
+* Die App soll modern und übersichtlich aussehen.
+* Zeige eine Auswahl von ungefähr 30 bekannten Filmen.
+* Jeder Film soll mindestens Titel, Erscheinungsjahr, Genres und einige beschreibende Keywords besitzen.
+* Der Nutzer kann jeden Film mit 👍 oder 👎 bewerten.
+* Bereits bewertete Filme sollen entsprechend markiert werden.
+* Die Bewertungen sollen im Browser gespeichert werden, sodass ein Neuladen der Seite sie nicht sofort verliert.
+* Zeige die bisherigen Bewertungen des Nutzers.
+* Erstelle aus den Bewertungen ein Nutzerprofil.
+* Zeige die wichtigsten Interessen des Nutzers sichtbar an.
+* Erstelle daraus personalisierte Filmempfehlungen.
+
+Verwende zunächst keine externe API und kein LLM. Die komplette Empfehlungslogik soll lokal in JavaScript funktionieren.
+
+Wichtig: Erkläre mir nach dem Code kurz, wie dein Empfehlungsalgorithmus funktioniert.
+-------------------
+Erweitere MovieMind so, dass sich das Nutzerprofil dynamisch aus den Bewertungen entwickelt.
+
+Wenn der Nutzer einen Film liked, sollen die Eigenschaften dieses Films das Nutzerprofil positiv beeinflussen.
+
+Wenn der Nutzer einen Film disliked, sollen die Eigenschaften dieses Films das Nutzerprofil negativ beeinflussen.
+
+Berücksichtige dabei mindestens:
+
+* Genres
+* Keywords
+
+Das Nutzerprofil soll beispielsweise Werte wie diese enthalten können:
+
+Sci-Fi: +4.2
+Drama: +1.8
+Space: +3.7
+Romance: -2.5
+
+Verwende diese Werte anschließend bei der Berechnung zukünftiger Empfehlungen.
+
+Zeige das Profil außerdem visuell auf der Website.
+
+Wichtig:
+
+* Erkläre genau, wie du die Profilwerte berechnest.
+* Erkläre, wie stark ein Like bzw. Dislike gewichtet wird.
+* Verändere die bisherige Benutzeroberfläche möglichst wenig.
+* Gib mir wieder den vollständigen aktualisierten Code.
+----------------
+Prompt 3:
+Erweitere MovieMind um eine „Why this movie?“-Funktion.
+
+Bei jeder Empfehlung soll der Nutzer sehen können, warum dieser Film zu seinem bisherigen Profil passt.
+
+Beispiel:
+
+Why this movie?
+
+✓ Sci-Fi matches your interests
+✓ You liked 3 movies with similar keywords
+✓ You have shown interest in space-related movies
+
+Die Erklärung soll ausschließlich auf den tatsächlich vorhandenen Nutzerbewertungen und Filmdaten basieren.
+
+Erfinde keine Gründe, die nicht aus den Daten abgeleitet werden können.
+
+Implementiere diese Funktion und erkläre mir anschließend, wie die Begründung erzeugt wird.
+-------------------
+Füge hier noch hinzu: welche Art von LLM soll verwendet werden
+Ich möchte jetzt ein LLM in MovieMind integrieren.
+
+Wichtig: Das LLM soll NICHT selbst entscheiden, welcher Film empfohlen wird.
+
+Der bestehende Empfehlungsalgorithmus soll weiterhin anhand des Nutzerprofils geeignete Filme auswählen.
+
+Das LLM soll anschließend für einen ausgewählten Film eine natürliche Erklärung formulieren.
+
+Beispielsweise bekommt es:
+
+User preferences:
+
+* Sci-Fi: +4.2
+* Space: +3.7
+* Romance: -2.5
+
+Recommended movie:
+
+* Arrival
+* genres: Sci-Fi, Drama
+* keywords: alien, language, space
+
+Das LLM soll daraus eine kurze, verständliche Erklärung erstellen, warum der Film zum Nutzer passen könnte.
+
+Implementiere diese LLM-Funktion in die bestehende Website.
+
+Trenne dabei klar:
+
+1. Empfehlungslogik
+2. Daten
+3. LLM-Erklärung
+
+Erkläre mir, warum diese Trennung sinnvoll ist.
+------------
+Prompt 4:
+Verändere MovieMind so, dass der Nutzer nicht ausschließlich Filme bekommt, die perfekt zu seinem bisherigen Profil passen.
+
+Das System soll überwiegend passende Filme empfehlen, aber gelegentlich auch einen Film außerhalb der bisherigen Präferenzen zeigen.
+
+Implementiere dafür eine sinnvolle Form von „exploration vs. exploitation“.
+
+Die Empfehlungsliste soll beispielsweise aus:
+
+* sehr passenden Filmen
+* ähnlich passenden Filmen
+* einigen bewusst neuen/unerwarteten Filmen
+
+bestehen.
+
+Erkläre:
+
+1. Wie du entscheidest, welche Filme vertraut sind
+2. Wie du neue Filme auswählst
+3. Wie du verhinderst, dass zufällige Filme die Empfehlungen dominieren
+
+Implementiere die Änderung in MovieMind.
+
+
+-----------------
+Prompt 5:
+Teste MovieMind kritisch.
+
+Konstruiere mindestens 5 konkrete Testszenarien, mit denen wir herausfinden können, ob der Empfehlungsalgorithmus sinnvoll funktioniert.
+
+Berücksichtige beispielsweise:
+
+* ein Nutzer, der ausschließlich Sci-Fi mag
+* ein Nutzer mit sehr unterschiedlichen Interessen
+* ein Nutzer, der fast alles disliked
+* ein Nutzer, der erst sehr wenige Filme bewertet hat
+* ein Nutzer, der nur Filme eines Genres bewertet
+
+Für jeden Test:
+
+1. Beschreibe die Ausgangssituation
+2. Gib die erwartete Art von Empfehlung an
+3. Führe den Test mit dem implementierten Algorithmus durch
+4. Erkläre mögliche Probleme
+
+Wenn du Probleme findest, verbessere anschließend den Algorithmus.
